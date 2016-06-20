@@ -8,6 +8,8 @@ RUN echo "deb     http://repositories.sensuapp.org/apt sensu main" > /etc/apt/so
 RUN apt-get update -q && apt-get install -q -y sensu=${SENSU_VERSION} && \
     rm -rf /var/lib/apt/lists/*
 
+CMD ["-c", "/etc/sensu/config.json", "-d", "/etc/sensu/config.d" ]
+
 ENV PATH /opt/sensu/embedded/bin:$PATH
 
 VOLUME /etc/sensu/conf.d
